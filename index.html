@@ -677,9 +677,6 @@
               <a href="https://github.com/Slim-lee1" class="social-icon-link" target="_blank" rel="noopener" aria-label="GitHub">
                 <i class="fab fa-github"></i>
               </a>
-              <a href="https://linkedin.com/in/" class="social-icon-link" target="_blank" rel="noopener" aria-label="LinkedIn">
-                <i class="fab fa-linkedin-in"></i>
-              </a>
               <a href="https://wa.me/254762073652" class="social-icon-link" target="_blank" rel="noopener" aria-label="WhatsApp">
                 <i class="fab fa-whatsapp"></i>
               </a>
@@ -963,142 +960,6 @@
 
 
   <!-- ===========================
-       GITHUB REPOS SECTION
-  =========================== -->
-  <section class="py-5" style="background: var(--bg-primary);">
-    <div class="container">
-      <div class="section-header mb-5 fade-in">
-        <h2>GitHub Repositories</h2>
-        <span class="underline"></span>
-        <p class="text-muted mt-3">
-          Live from <a href="https://github.com/Slim-lee1" target="_blank" rel="noopener" style="color:var(--primary);text-decoration:none;">@Slim-lee1</a> — my latest public work
-        </p>
-      </div>
-
-      <div id="github-loading" class="text-center py-5">
-        <div class="spinner-border text-primary" role="status" style="width:2.5rem;height:2.5rem;">
-          <span class="visually-hidden">Loading...</span>
-        </div>
-        <p class="text-muted mt-3" style="font-size:0.9rem;">Fetching repositories...</p>
-      </div>
-
-      <div id="github-error" class="text-center py-5" style="display:none;">
-        <i class="fab fa-github" style="font-size:3rem;opacity:0.3;"></i>
-        <p class="text-muted mt-3">Could not load repositories. <a href="https://github.com/Slim-lee1" target="_blank" rel="noopener" style="color:var(--primary);">View on GitHub →</a></p>
-      </div>
-
-      <div id="github-repos" class="row g-4" style="display:none;"></div>
-
-      <div class="text-center mt-5">
-        <a href="https://github.com/Slim-lee1" target="_blank" rel="noopener" class="btn-hero-primary" style="display:inline-flex;">
-          <i class="fab fa-github me-2"></i> View All on GitHub
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <style>
-    .repo-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      color: inherit;
-    }
-    .repo-card:hover {
-      border-color: var(--primary);
-      transform: translateY(-6px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.15);
-      color: inherit;
-    }
-    .repo-name {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--primary);
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .repo-desc {
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      flex: 1;
-      margin-bottom: 1rem;
-      line-height: 1.5;
-    }
-    .repo-meta {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-    .repo-lang-dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      display: inline-block;
-      flex-shrink: 0;
-    }
-    .repo-lang { display: flex; align-items: center; gap: 0.35rem; }
-  </style>
-
-  <script>
-    const LANG_COLORS = {
-      'JavaScript':'#f1e05a','Python':'#3572A5','HTML':'#e34c26',
-      'CSS':'#563d7c','TypeScript':'#2b7489','Java':'#b07219',
-      'C++':'#f34b7d','C':'#555555','Shell':'#89e051',
-      'PHP':'#4F5D95','Ruby':'#701516','Go':'#00ADD8',
-      'Rust':'#dea584','Swift':'#ffac45','Kotlin':'#A97BFF',
-    };
-
-    async function loadGitHubRepos() {
-      const grid = document.getElementById('github-repos');
-      const loading = document.getElementById('github-loading');
-      const error = document.getElementById('github-error');
-      try {
-        const res = await fetch('https://api.github.com/users/Slim-lee1/repos?sort=updated&per_page=6');
-        if (!res.ok) throw new Error('API error');
-        const repos = await res.json();
-        loading.style.display = 'none';
-        if (!repos.length) { error.style.display = 'block'; return; }
-        grid.style.display = 'flex';
-        repos.forEach(repo => {
-          const langColor = LANG_COLORS[repo.language] || '#94a3b8';
-          const desc = repo.description || 'No description provided.';
-          const col = document.createElement('div');
-          col.className = 'col-lg-4 col-md-6';
-          col.innerHTML = `
-            <a href="${repo.html_url}" target="_blank" rel="noopener" class="repo-card">
-              <div class="repo-name">
-                <i class="fas fa-book" style="font-size:0.85rem;opacity:0.6;"></i>
-                ${repo.name}
-                ${repo.fork ? '<span class="badge bg-secondary" style="font-size:0.65rem;">Fork</span>' : ''}
-              </div>
-              <p class="repo-desc">${desc}</p>
-              <div class="repo-meta">
-                ${repo.language ? `<span class="repo-lang"><span class="repo-lang-dot" style="background:${langColor};"></span>${repo.language}</span>` : ''}
-                <span><i class="fas fa-star me-1" style="color:#f59e0b;font-size:0.75rem;"></i>${repo.stargazers_count}</span>
-                <span><i class="fas fa-code-branch me-1" style="font-size:0.75rem;"></i>${repo.forks_count}</span>
-              </div>
-            </a>`;
-          grid.appendChild(col);
-        });
-      } catch (e) {
-        loading.style.display = 'none';
-        error.style.display = 'block';
-      }
-    }
-    loadGitHubRepos();
-  </script>
-
-  <!-- ===========================
        FOOTER
   =========================== -->
   <footer class="py-5">
@@ -1113,7 +974,6 @@
           </p>
           <div class="social-icons">
             <a href="https://github.com/Slim-lee1" class="social-icon-link" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/" class="social-icon-link" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
             <a href="https://wa.me/254762073652" class="social-icon-link" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
           </div>
         </div>
