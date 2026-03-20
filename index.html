@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Livingstone Nyamari | Full-Stack Developer & Cyber Security Specialist</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <style>
+    /* ===========================
+       CSS Variables & Base
+    =========================== */
+    :root {
+      --primary: #2563eb;
+      --secondary: #7c3aed;
+      --accent: #06b6d4;
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --card-bg: #1e293b;
+      --text-primary: #f1f5f9;
+      --text-muted: #94a3b8;
+      --border: rgba(148, 163, 184, 0.12);
+      --radius: 16px;
+      --nav-height: 72px;
+    }
+
+    [data-bs-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #f1f5f9;
+      --card-bg: #ffffff;
+      --text-primary: #0f172a;
+      --text-muted: #475569;
+      --border: rgba(15, 23, 42, 0.1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+    }
+
+    /* ===========================
+       Navbar
+    =========================== */
+    .navbar {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      height: var(--nav-height);
+      transition: background 0.3s;
+    }
+
+    [data-bs-theme="light"] .navbar {
+      background: rgba(248, 250, 252, 0.85);
+    }
+
+    .navbar-brand {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-link {
+      font-weight: 500;
+      font-size: 0.9rem;
+      padding: 0.45rem 1rem !important;
+      border-radius: 8px;
+      transition: all 0.2s;
+      color: var(--text-primary) !important;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      background: rgba(37, 99, 235, 0.12);
+      color: var(--primary) !important;
+    }
+
+    .theme-toggle {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .theme-toggle:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    /* ===========================
+       Page Wrapper
+    =========================== */
+    .page-wrapper {
+      padding-top: var(--nav-height);
+      flex: 1;
+    }
+
+    /* ===========================
+       Hero Section
+    =========================== */
+    .hero-section {
+      min-height: calc(100vh - var(--nav-height));
+      background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 5rem 0 4rem;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.12) 0%, transparent 70%);
+      top: -200px;
+      right: -200px;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 70%);
+      bottom: -100px;
+      left: -100px;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; z-index: 2; }
+
+    .hero-title {
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -2px;
+      margin-bottom: 0.5rem;
+    }
+
+    .typewriter-text {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 500;
+      color: var(--primary);
+      min-height: 2rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .typewriter-text::after {
+      content: '|';
+      animation: blink 0.8s step-end infinite;
+    }
+
+    @keyframes blink { 0%, 100% { opacity: 1 } 50% { opacity: 0 } }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-bottom: 0;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-hero-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 0.875rem 2rem;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .btn-hero-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(37, 99, 235, 0.35);
+      color: white;
+    }
+
+    .btn-hero-outline {
+      background: transparent;
+      color: var(--text-primary);
+      padding: 0.875rem 2rem;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      border: 2px solid var(--border);
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .btn-hero-outline:hover {
+      border-color: var(--primary);
+      background: rgba(37, 99, 235, 0.08);
+      color: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    /* Social Icons */
+    .social-icons { display: flex; gap: 0.75rem; margin-top: 2rem; }
+
+    .social-icon-link {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: all 0.25s;
+      font-size: 0.95rem;
+    }
+
+    .social-icon-link:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    /* Hero Profile Image */
+    .hero-profile {
+      position: relative;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .profile-image-wrapper {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+      border: 3px solid transparent;
+      background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
+                  linear-gradient(135deg, var(--primary), var(--secondary)) border-box;
+      position: relative;
+    }
+
+    .profile-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .profile-image:hover { transform: scale(1.04); }
+
+    .profile-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+      z-index: 10;
+      white-space: nowrap;
+    }
+
+    /* Profile placeholder */
+    .profile-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--card-bg) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      gap: 1rem;
+    }
+
+    .profile-placeholder i { font-size: 5rem; opacity: 0.3; }
+    .profile-placeholder span { font-size: 0.85rem; opacity: 0.5; }
+
+    /* Floating elements */
+    .floating-elements {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .floating-element {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(37, 99, 235, 0.07);
+      animation: floatAnim 18s infinite linear;
+    }
+
+    .floating-element:nth-child(1) { width: 120px; height: 120px; top: 8%; left: 5%; animation-delay: 0s; }
+    .floating-element:nth-child(2) { width: 180px; height: 180px; top: 55%; right: 5%; animation-delay: -6s; }
+    .floating-element:nth-child(3) { width: 90px; height: 90px; bottom: 15%; left: 20%; animation-delay: -12s; }
+
+    @keyframes floatAnim {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      33% { transform: translateY(-25px) rotate(120deg); }
+      66% { transform: translateY(25px) rotate(240deg); }
+    }
+
+    /* Section Headers */
+    .section-header { text-align: center; }
+    .section-header h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 800; letter-spacing: -1px; }
+    .underline {
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 2px;
+      margin: 0.75rem auto 0;
+    }
+
+    /* Fade-in */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ===========================
+       Stats Section
+    =========================== */
+    .stats-section {
+      padding: 4rem 0;
+      background: var(--card-bg);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stat-card {
+      text-align: center;
+      padding: 2rem;
+      transition: transform 0.3s;
+    }
+
+    .stat-card:hover { transform: translateY(-8px); }
+
+    .stat-number {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+      line-height: 1;
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ===========================
+       Projects Section
+    =========================== */
+    .featured-projects {
+      padding: 5rem 0;
+      background: var(--bg-primary);
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: all 0.35s;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--primary);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      display: block;
+    }
+
+    .project-card:hover .project-image { transform: scale(1.06); }
+
+    /* Project image placeholder */
+    .project-img-placeholder {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 3rem;
+      opacity: 0.4;
+      flex-shrink: 0;
+    }
+
+    .project-content {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .tech-tag {
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      border: 1px solid rgba(37, 99, 235, 0.2);
+    }
+
+    .project-link {
+      margin-top: auto;
+      padding-top: 1rem;
+    }
+
+    /* ===========================
+       Services / Expertise
+    =========================== */
+    .services-preview {
+      padding: 5rem 0;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.95));
+    }
+
+    [data-bs-theme="light"] .services-preview {
+      background: var(--bg-secondary);
+    }
+
+    .service-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: all 0.3s;
+    }
+
+    [data-bs-theme="light"] .service-card {
+      background: var(--card-bg);
+    }
+
+    .service-card:hover {
+      border-color: var(--primary);
+      background: rgba(37, 99, 235, 0.05);
+      transform: translateY(-6px);
+    }
+
+    .service-icon-box {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      color: white;
+      font-size: 1.6rem;
+    }
+
+    /* ===========================
+       Contact CTA
+    =========================== */
+    .contact-cta {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      padding: 3.5rem 2.5rem;
+      border-radius: var(--radius);
+      color: white;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(37, 99, 235, 0.3);
+    }
+
+    .contact-cta::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+    }
+
+    /* ===========================
+       Footer
+    =========================== */
+    footer {
+      background: var(--card-bg);
+      border-top: 1px solid var(--border);
+      margin-top: auto;
+    }
+
+    .footer-brand {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    footer a { transition: color 0.2s; }
+    footer a:hover { color: var(--primary) !important; }
+
+    /* ===========================
+       Responsive
+    =========================== */
+    @media (max-width: 768px) {
+      .hero-section { padding: 3rem 0 3rem; text-align: center; }
+      .hero-subtitle { margin: 0 auto; }
+      .cta-buttons { justify-content: center; }
+      .social-icons { justify-content: center; }
+      .hero-profile { margin-top: 2.5rem; max-width: 280px; }
+    }
+
+    @media (max-width: 576px) {
+      .contact-cta { padding: 2.5rem 1.5rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===========================
+       NAVBAR
+  =========================== -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">LN</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item">
+            <a class="nav-link active" href="#home"><i class="fas fa-home me-1"></i> Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#projects"><i class="fas fa-code me-1"></i> Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#expertise"><i class="fas fa-tools me-1"></i> Expertise</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact"><i class="fas fa-envelope me-1"></i> Contact</a>
+          </li>
+        </ul>
+        <button class="btn theme-toggle ms-3" id="themeToggle" aria-label="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===========================
+       MAIN WRAPPER
+  =========================== -->
+  <div class="page-wrapper" id="home">
+
+    <!-- HERO -->
+    <section class="hero-section">
+      <div class="floating-elements" aria-hidden="true">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+      </div>
+
+      <div class="container">
+        <div class="row align-items-center gy-5">
+          <div class="col-lg-6 hero-content">
+
+            <div class="mb-3">
+              <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 px-3 py-2 rounded-pill">
+                <i class="fas fa-graduation-cap me-1"></i> Industrial Mathematics & Computer Science | JKUAT
+              </span>
+            </div>
+
+            <h1 class="hero-title">Livingstone Nyamari</h1>
+
+            <div class="typewriter-text" id="typewriter"></div>
+
+            <p class="hero-subtitle">
+              Motivated developer and cyber security specialist with hands-on experience in full-stack development, 
+              financial systems, and NDT industry solutions. Passionate about building technology that drives real results.
+            </p>
+
+            <div class="cta-buttons">
+              <a class="btn-hero-primary" href="#projects">
+                <i class="fas fa-code"></i> View My Work
+              </a>
+              <a class="btn-hero-outline" href="#contact">
+                <i class="fas fa-paper-plane"></i> Get in Touch
+              </a>
+            </div>
+
+            <div class="social-icons">
+              <a href="https://github.com/Slim-lee1" class="social-icon-link" target="_blank" rel="noopener" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://linkedin.com/in/" class="social-icon-link" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="https://wa.me/254796175182" class="social-icon-link" target="_blank" rel="noopener" aria-label="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+              </a>
+              <a href="/cdn-cgi/l/email-protection#12617e7b7f7e7b647b7c7561667d7c2352757f737b7e3c717d7f" class="social-icon-link" aria-label="Email">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+
+          </div><!-- /col -->
+
+          <div class="col-lg-6">
+            <div class="hero-profile">
+              <div class="profile-image-wrapper">
+                <!--
+                  🔧 CHANGE: Replace the placeholder below with your actual photo.
+                  Use: <img src="images/your-photo.jpg" alt="Your Name" class="profile-image" loading="lazy">
+                  Make sure to remove the .profile-placeholder div when you add your image.
+                -->
+                <div class="profile-placeholder">
+                  <i class="fas fa-user-circle"></i>
+                  <span>Replace with your photo</span>
+                </div>
+
+                <div class="profile-badge">
+                  <i class="fas fa-shield-alt me-1"></i> Cyber Security
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /row -->
+      </div><!-- /container -->
+    </section><!-- /hero -->
+
+
+    <!-- ===========================
+         STATS
+    =========================== -->
+    <section class="stats-section">
+      <div class="container">
+        <div class="row text-center">
+
+          <div class="col-md-3 col-6 mb-4">
+            <div class="stat-card fade-in">
+              <div class="stat-number" data-count="3">0</div>
+              <div class="stat-label">Companies Worked With</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6 mb-4">
+            <div class="stat-card fade-in">
+              <div class="stat-number" data-count="3">0</div>
+              <div class="stat-label">Years Experience</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6 mb-4">
+            <div class="stat-card fade-in">
+              <div class="stat-number" data-count="60">0</div>
+              <div class="stat-label">WPM Typing Speed</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6 mb-4">
+            <div class="stat-card fade-in">
+              <div class="stat-number" data-count="3">0</div>
+              <div class="stat-label">Languages Spoken</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===========================
+         FEATURED PROJECTS
+    =========================== -->
+    <section class="featured-projects" id="projects">
+      <div class="container">
+        <div class="section-header mb-5 fade-in">
+          <h2>Featured Projects</h2>
+          <span class="underline"></span>
+          <p class="text-muted mt-3">Handpicked work that showcases my expertise</p>
+        </div>
+
+        <div class="row g-4">
+
+          <!-- PROJECT 1: Busy Bee Financial Platform -->
+          <div class="col-lg-4 col-md-6 fade-in">
+            <div class="project-card">
+              <div class="project-img-placeholder"><i class="fas fa-chart-line"></i></div>
+              <div class="project-content">
+                <h5 class="fw-bold">Busy Bee — Financial Systems</h5>
+                <p class="text-muted" style="font-size:0.9rem;">
+                  Tech support and development for a hedge fund company. Built and encrypted financial programs for liquid market trading, generating consistent returns and client payouts.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-tag">Financial Tech</span>
+                  <span class="tech-tag">Encryption</span>
+                  <span class="tech-tag">Trading Systems</span>
+                </div>
+                <div class="project-link">
+                  <a class="btn btn-link text-primary p-0" href="https://discord.gg/vsK2EsvbZ" target="_blank" rel="noopener">View Community →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROJECT 2: NDT Cyber Security & Full-Stack -->
+          <div class="col-lg-4 col-md-6 fade-in">
+            <div class="project-card">
+              <div class="project-img-placeholder"><i class="fas fa-shield-alt"></i></div>
+              <div class="project-content">
+                <h5 class="fw-bold">NDT — Cyber Security & Full-Stack</h5>
+                <p class="text-muted" style="font-size:0.9rem;">
+                  Designed and deployed a custom full-stack web application for a Non-Destructive Testing company, with integrated cyber security measures to protect sensitive inspection data.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-tag">Cyber Security</span>
+                  <span class="tech-tag">Full-Stack Dev</span>
+                  <span class="tech-tag">Industrial</span>
+                </div>
+                <div class="project-link">
+                  <a class="btn btn-link text-primary p-0" href="#">View Details →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROJECT 3: NCA Attachment -->
+          <div class="col-lg-4 col-md-6 fade-in">
+            <div class="project-card">
+              <div class="project-img-placeholder"><i class="fas fa-building"></i></div>
+              <div class="project-content">
+                <h5 class="fw-bold">NCA — Attachment & Tech Support</h5>
+                <p class="text-muted" style="font-size:0.9rem;">
+                  Industrial attachment with the National Construction Authority (NCA), applying mathematical modelling and computing skills in a regulatory and construction technology environment.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-tag">Data Analysis</span>
+                  <span class="tech-tag">MS Office Suite</span>
+                  <span class="tech-tag">Tech Support</span>
+                </div>
+                <div class="project-link">
+                  <a class="btn btn-link text-primary p-0" href="#">View Details →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /row -->
+
+        <div class="text-center mt-5 fade-in">
+          <!-- 🔧 CHANGE: Link to your full portfolio page or GitHub -->
+          <a href="#" class="btn btn-primary px-4 py-2">
+            <i class="fas fa-arrow-right me-2"></i> View All Projects
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===========================
+         EXPERTISE / SERVICES
+    =========================== -->
+    <section class="services-preview" id="expertise">
+      <div class="container">
+        <div class="section-header mb-5 fade-in">
+          <!-- 🔧 CHANGE: Section subtitle -->
+          <h2 class="text-white">My Expertise</h2>
+          <span class="underline"></span>
+          <p class="text-light opacity-75 mt-3">Core areas I specialise in</p>
+        </div>
+
+        <div class="row g-4">
+
+          <!-- EXPERTISE 1 -->
+          <div class="col-lg-4 col-md-6 fade-in">
+            <div class="service-card">
+              <div class="service-icon-box">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <h4 class="text-white mb-2">Cyber Security</h4>
+              <p class="text-light opacity-75" style="font-size:0.9rem;">
+                Securing systems and networks for industrial and financial clients. Experience with vulnerability assessment, encryption, and implementing security protocols for sensitive environments.
+              </p>
+            </div>
+          </div>
+
+          <!-- EXPERTISE 2 -->
+          <div class="col-lg-4 col-md-6 fade-in">
+            <div class="service-card">
+              <div class="service-icon-box">
+                <i class="fas fa-laptop-code"></i>
+              </div>
+              <h4 class="text-white mb-2">Full-Stack Development</h4>
+              <p class="text-light opacity-75" style="font-size:0.9rem;">
+                Building end-to-end web applications — from database design and backend APIs to responsive, user-friendly frontends. Fluent in multiple programming languages and frameworks.
+              </p>
+            </div>
+          </div>
+
+          <!-- EXPERTISE 3 -->
+          <div class="col-lg-4 col-md-6 fade-in">
+            <div class="service-card">
+              <div class="service-icon-box">
+                <i class="fas fa-chart-bar"></i>
+              </div>
+              <h4 class="text-white mb-2">Financial Systems & Maths</h4>
+              <p class="text-light opacity-75" style="font-size:0.9rem;">
+                Applying Industrial Mathematics to develop encrypted financial programs for liquid markets. Experience supporting hedge fund operations, trading systems, and analytical modelling.
+              </p>
+            </div>
+          </div>
+
+          <!-- EXPERTISE 4: Mobile Development -->
+          <div class="col-lg-4 col-md-6 fade-in">
+            <div class="service-card">
+              <div class="service-icon-box">
+                <i class="fas fa-mobile-alt"></i>
+              </div>
+              <h4 class="text-white mb-2">Mobile Development</h4>
+              <p class="text-light opacity-75" style="font-size:0.9rem;">
+                Building cross-platform and native mobile applications using modern frameworks and languages. Delivering smooth, responsive user experiences on both Android and iOS.
+              </p>
+              <div class="d-flex flex-wrap gap-2 mt-3">
+                <span class="tech-tag" style="background:rgba(97,218,251,0.1);color:#61DAFB;border-color:rgba(97,218,251,0.2);">
+                  <i class="fab fa-react me-1"></i> React Native
+                </span>
+                <span class="tech-tag" style="background:rgba(84,188,255,0.1);color:#54BCFF;border-color:rgba(84,188,255,0.2);">
+                  <i class="fas fa-bolt me-1"></i> Flutter
+                </span>
+                <span class="tech-tag" style="background:rgba(169,123,255,0.1);color:#A97BFF;border-color:rgba(169,123,255,0.2);">
+                  <i class="fab fa-android me-1"></i> Kotlin
+                </span>
+                <span class="tech-tag" style="background:rgba(255,172,69,0.1);color:#FFAC45;border-color:rgba(255,172,69,0.2);">
+                  <i class="fab fa-app-store-ios me-1"></i> Swift
+                </span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="text-center mt-5 fade-in">
+          <!-- 🔧 CHANGE: Link to a full services/about page or remove this button -->
+          <a href="#contact" class="btn-hero-outline" style="display:inline-flex;">
+            <i class="fas fa-paper-plane me-2"></i> Hire Me
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===========================
+         CONTACT CTA
+    =========================== -->
+    <section class="py-5 my-5" id="contact">
+      <div class="container">
+        <div class="contact-cta fade-in">
+          <div class="row align-items-center gy-4">
+            <div class="col-lg-8">
+              <!-- 🔧 CHANGE: Headline & sub-text -->
+              <h3 class="display-6 fw-bold mb-3">Ready to Start Your Project?</h3>
+              <p class="lead mb-0">
+                Let's discuss how I can help bring your ideas to life with the right technology solutions.
+              </p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+              <!-- 🔧 CHANGE: href to email or contact form page -->
+              <a href="/cdn-cgi/l/email-protection#a9dac5c0c4c5c0dfc0c7cedaddc6c798e9cec4c8c0c587cac6c4" class="btn btn-light btn-lg px-5 py-3 fw-bold">
+                <i class="fas fa-paper-plane me-2"></i> Get in Touch
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /page-wrapper -->
+
+
+
+
+  <!-- ===========================
+       GITHUB REPOS SECTION
+  =========================== -->
+  <section class="py-5" style="background: var(--bg-primary);">
+    <div class="container">
+      <div class="section-header mb-5 fade-in">
+        <h2>GitHub Repositories</h2>
+        <span class="underline"></span>
+        <p class="text-muted mt-3">
+          Live from <a href="https://github.com/Slim-lee1" target="_blank" rel="noopener" style="color:var(--primary);text-decoration:none;">@Slim-lee1</a> — my latest public work
+        </p>
+      </div>
+
+      <div id="github-loading" class="text-center py-5">
+        <div class="spinner-border text-primary" role="status" style="width:2.5rem;height:2.5rem;">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="text-muted mt-3" style="font-size:0.9rem;">Fetching repositories...</p>
+      </div>
+
+      <div id="github-error" class="text-center py-5" style="display:none;">
+        <i class="fab fa-github" style="font-size:3rem;opacity:0.3;"></i>
+        <p class="text-muted mt-3">Could not load repositories. <a href="https://github.com/Slim-lee1" target="_blank" rel="noopener" style="color:var(--primary);">View on GitHub →</a></p>
+      </div>
+
+      <div id="github-repos" class="row g-4" style="display:none;"></div>
+
+      <div class="text-center mt-5">
+        <a href="https://github.com/Slim-lee1" target="_blank" rel="noopener" class="btn-hero-primary" style="display:inline-flex;">
+          <i class="fab fa-github me-2"></i> View All on GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .repo-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+    .repo-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+      color: inherit;
+    }
+    .repo-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .repo-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      flex: 1;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+    .repo-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .repo-lang-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .repo-lang { display: flex; align-items: center; gap: 0.35rem; }
+  </style>
+
+  <script>
+    const LANG_COLORS = {
+      'JavaScript':'#f1e05a','Python':'#3572A5','HTML':'#e34c26',
+      'CSS':'#563d7c','TypeScript':'#2b7489','Java':'#b07219',
+      'C++':'#f34b7d','C':'#555555','Shell':'#89e051',
+      'PHP':'#4F5D95','Ruby':'#701516','Go':'#00ADD8',
+      'Rust':'#dea584','Swift':'#ffac45','Kotlin':'#A97BFF',
+    };
+
+    async function loadGitHubRepos() {
+      const grid = document.getElementById('github-repos');
+      const loading = document.getElementById('github-loading');
+      const error = document.getElementById('github-error');
+      try {
+        const res = await fetch('https://api.github.com/users/Slim-lee1/repos?sort=updated&per_page=6');
+        if (!res.ok) throw new Error('API error');
+        const repos = await res.json();
+        loading.style.display = 'none';
+        if (!repos.length) { error.style.display = 'block'; return; }
+        grid.style.display = 'flex';
+        repos.forEach(repo => {
+          const langColor = LANG_COLORS[repo.language] || '#94a3b8';
+          const desc = repo.description || 'No description provided.';
+          const col = document.createElement('div');
+          col.className = 'col-lg-4 col-md-6';
+          col.innerHTML = `
+            <a href="${repo.html_url}" target="_blank" rel="noopener" class="repo-card">
+              <div class="repo-name">
+                <i class="fas fa-book" style="font-size:0.85rem;opacity:0.6;"></i>
+                ${repo.name}
+                ${repo.fork ? '<span class="badge bg-secondary" style="font-size:0.65rem;">Fork</span>' : ''}
+              </div>
+              <p class="repo-desc">${desc}</p>
+              <div class="repo-meta">
+                ${repo.language ? `<span class="repo-lang"><span class="repo-lang-dot" style="background:${langColor};"></span>${repo.language}</span>` : ''}
+                <span><i class="fas fa-star me-1" style="color:#f59e0b;font-size:0.75rem;"></i>${repo.stargazers_count}</span>
+                <span><i class="fas fa-code-branch me-1" style="font-size:0.75rem;"></i>${repo.forks_count}</span>
+              </div>
+            </a>`;
+          grid.appendChild(col);
+        });
+      } catch (e) {
+        loading.style.display = 'none';
+        error.style.display = 'block';
+      }
+    }
+    loadGitHubRepos();
+  </script>
+
+  <!-- ===========================
+       FOOTER
+  =========================== -->
+  <footer class="py-5">
+    <div class="container">
+      <div class="row gy-4">
+
+        <!-- Brand col -->
+        <div class="col-lg-4 mb-4">
+          <div class="footer-brand mb-3">Livingstone Nyamari</div>
+          <p class="text-muted mb-4" style="font-size:0.9rem;">
+            Full-Stack Developer & Cyber Security Specialist based in Nairobi, Kenya. Building secure, scalable technology solutions.
+          </p>
+          <div class="social-icons">
+            <a href="https://github.com/Slim-lee1" class="social-icon-link" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/" class="social-icon-link" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://wa.me/254796175182" class="social-icon-link" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick links -->
+        <div class="col-lg-2 col-6 mb-4">
+          <h6 class="mb-3 fw-bold" style="text-transform:uppercase;font-size:0.8rem;letter-spacing:1px;">Quick Links</h6>
+          <ul class="list-unstyled" style="font-size:0.9rem;">
+            <li class="mb-2"><a class="text-muted text-decoration-none" href="#home">Home</a></li>
+            <li class="mb-2"><a class="text-muted text-decoration-none" href="#projects">Projects</a></li>
+            <li class="mb-2"><a class="text-muted text-decoration-none" href="#expertise">Expertise</a></li>
+            <li class="mb-2"><a class="text-muted text-decoration-none" href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div class="col-lg-3 col-6 mb-4">
+          <h6 class="mb-3 fw-bold" style="text-transform:uppercase;font-size:0.8rem;letter-spacing:1px;">Services</h6>
+          <ul class="list-unstyled" style="font-size:0.9rem;">
+            <li class="mb-2"><a class="text-muted text-decoration-none" href="#">Cyber Security</a></li>
+            <li class="mb-2"><a class="text-muted text-decoration-none" href="#">Full-Stack Development</a></li>
+            <li class="mb-2"><a class="text-muted text-decoration-none" href="#">Financial Systems</a></li>
+            <li class="mb-2"><a class="text-muted text-decoration-none" href="#">Tech Support</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact info -->
+        <div class="col-lg-3 mb-4">
+          <h6 class="mb-3 fw-bold" style="text-transform:uppercase;font-size:0.8rem;letter-spacing:1px;">Contact</h6>
+          <ul class="list-unstyled text-muted" style="font-size:0.9rem;">
+            <li class="mb-2"><i class="fas fa-envelope me-2 text-primary"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ff8c9396929396899691988c8b9091cebf98929e9693d19c9092">[email&#160;protected]</a></li>
+            <li class="mb-2"><i class="fas fa-phone me-2 text-primary"></i> +254 796 175 182</li>
+            <li class="mb-2"><i class="fas fa-map-marker-alt me-2 text-primary"></i> Nairobi, Kenya</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <hr class="border-secondary my-4">
+
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <p class="mb-0 text-muted" style="font-size:0.85rem;">
+            © <span id="currentYear"></span> Livingstone Nyamari. All rights reserved.
+          </p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <!-- 🔧 CHANGE: Your fun footer quote (or remove) -->
+          <p class="mb-0 text-muted" style="font-size:0.85rem;">
+            <i class="fas fa-coffee me-1"></i> "First, solve the problem. Then, write the code."
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Bootstrap JS -->
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // ===========================
+    // 🔧 CHANGE: Your typewriter roles
+    // ===========================
+    const TYPEWRITER_ROLES = [
+      "Full-Stack Developer",
+      "Cyber Security Specialist",
+      "Financial Systems Engineer",
+      "Industrial Mathematics & Computer Science Graduate",
+    ];
+
+    /* ---------- Theme Toggle ---------- */
+    const themeToggle = document.getElementById('themeToggle');
+    const htmlEl = document.documentElement;
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    htmlEl.setAttribute('data-bs-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const current = htmlEl.getAttribute('data-bs-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      htmlEl.setAttribute('data-bs-theme', next);
+      localStorage.setItem('theme', next);
+      updateThemeIcon(next);
+    });
+
+    function updateThemeIcon(theme) {
+      const icon = themeToggle.querySelector('i');
+      icon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+    }
+
+    /* ---------- Typewriter ---------- */
+    const typewriterEl = document.getElementById('typewriter');
+    let tIndex = 0, cIndex = 0, deleting = false;
+
+    function typeWriter() {
+      const current = TYPEWRITER_ROLES[tIndex];
+      typewriterEl.textContent = deleting
+        ? current.substring(0, cIndex - 1)
+        : current.substring(0, cIndex + 1);
+      deleting ? cIndex-- : cIndex++;
+
+      if (!deleting && cIndex === current.length) {
+        deleting = true;
+        return setTimeout(typeWriter, 2200);
+      }
+      if (deleting && cIndex === 0) {
+        deleting = false;
+        tIndex = (tIndex + 1) % TYPEWRITER_ROLES.length;
+        return setTimeout(typeWriter, 500);
+      }
+      setTimeout(typeWriter, deleting ? 45 : 95);
+    }
+
+    /* ---------- Animated Counters ---------- */
+    function animateCounters() {
+      document.querySelectorAll('.stat-number').forEach(el => {
+        const target = +el.getAttribute('data-count');
+        const duration = 1400;
+        const step = target / (duration / 16);
+        let current = 0;
+        const timer = setInterval(() => {
+          current = Math.min(current + step, target);
+          el.textContent = Math.floor(current);
+          if (current >= target) { el.textContent = target; clearInterval(timer); }
+        }, 16);
+      });
+    }
+
+    /* ---------- Intersection Observer (fade-in + counters) ---------- */
+    let countersAnimated = false;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          if (entry.target.closest('.stats-section') && !countersAnimated) {
+            countersAnimated = true;
+            animateCounters();
+          }
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    document.querySelector('.stats-section').querySelectorAll('.stat-card')
+      .forEach(el => observer.observe(el));
+
+    /* ---------- Init ---------- */
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    setTimeout(typeWriter, 800);
+
+    /* ---------- Smooth active link highlighting ---------- */
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = ['home', 'projects', 'expertise', 'contact'];
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY + 100;
+      sections.forEach(id => {
+        const sec = document.getElementById(id);
+        if (!sec) return;
+        if (sec.offsetTop <= scrollY && sec.offsetTop + sec.offsetHeight > scrollY) {
+          navLinks.forEach(l => {
+            l.classList.remove('active');
+            if (l.getAttribute('href') === '#' + id) l.classList.add('active');
+          });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
